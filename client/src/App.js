@@ -1,19 +1,25 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Dashboard from "./pages/Dashboard";
+import Interview from "./pages/Interview";
+import Result from "./pages/Result";
+import Navbar from "./components/Navbar";
 function App() {
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    axios.get("http://localhost:5000")
-      .then(res => setMessage(res.data));
-  }, []);
-
   return (
-    <div>
-      <h1>Frontend + Backend Connected</h1>
-      <p>{message}</p>
-    </div>
+    <BrowserRouter>
+    <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/interview" element={<Interview />} />
+        <Route path="/result" element={<Result />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
