@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
 
-// 📧 MAIL CONFIG
+// MAIL CONFIG
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -15,7 +15,7 @@ const transporter = nodemailer.createTransport({
 
 
 // =======================
-// 🔐 SIGNUP
+//  SIGNUP
 // =======================
 exports.signupUser = async (req, res) => {
   const { name, email, password, role, experience } = req.body;
@@ -78,7 +78,7 @@ exports.signupUser = async (req, res) => {
 
 
 // =======================
-// 🔐 LOGIN
+//  LOGIN
 // =======================
 exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
@@ -101,7 +101,7 @@ exports.loginUser = async (req, res) => {
 
 
 // =======================
-// 🔐 FORGOT PASSWORD (SEND OTP)
+// FORGOT PASSWORD (SEND OTP)
 // =======================
 exports.forgotPassword = async (req, res) => {
   const { email } = req.body;
@@ -185,7 +185,7 @@ HireAce
 
 
 // =======================
-// 🔐 VERIFY OTP
+// VERIFY OTP
 // =======================
 exports.verifyOtp = async (req, res) => {
   const { email, otp } = req.body;
@@ -218,7 +218,7 @@ exports.verifyOtp = async (req, res) => {
 
 
 // =======================
-// 🔐 RESET PASSWORD
+//  RESET PASSWORD
 // =======================
 exports.resetPassword = async (req, res) => {
   const { email, newPassword } = req.body;
@@ -226,7 +226,7 @@ exports.resetPassword = async (req, res) => {
   try {
     const user = await User.findOne({ email });
 
-    // ✅ ONLY CHECK VERIFIED FLAG (NOT OTP AGAIN)
+    //  ONLY CHECK VERIFIED FLAG (NOT OTP AGAIN)
     if (!user || !user.isOtpVerified) {
       return res.status(400).json({ message: "OTP not verified" });
     }
@@ -235,7 +235,7 @@ exports.resetPassword = async (req, res) => {
 
     user.password = hashedPassword;
 
-    // 🧹 CLEAR EVERYTHING
+    //  CLEAR EVERYTHING
     user.otp = null;
     user.otpExpiry = null;
     user.isOtpVerified = false;
