@@ -1,15 +1,27 @@
+// 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Bot, BarChart3, Target, TrendingUp } from "lucide-react";
-const Home = () => {
+import {
+  Bot,
+  BarChart3,
+  Target,
+  TrendingUp,
+} from "lucide-react";
+
+const Home = ({ darkMode }) => {
   const [hoveredFeature, setHoveredFeature] = useState(null);
+
   const navigate = useNavigate();
 
   return (
-    <div style={styles.page}>
-      {/* Navbar */}
-
-      {/* Hero Section */}
+    <div
+      style={{
+        ...styles.page,
+        background: darkMode ? "#111111" : "#F0E7D5",
+        color: darkMode ? "#FFFFFF" : "#4B3935",
+      }}
+    >
+      {/* HERO */}
       <header style={styles.hero}>
         <div style={styles.blob1} />
         <div style={styles.blob2} />
@@ -19,8 +31,14 @@ const Home = () => {
           with <span style={{ color: "#C8A97E" }}>AI Intelligence</span>
         </h1>
 
-        <p style={styles.heroSub}>
-          Practice real-time mock interviews, get instant feedback, and track your growth with HireAce.
+        <p
+          style={{
+            ...styles.heroSub,
+            color: darkMode ? "#D1D1D1" : "#7A6A65",
+          }}
+        >
+          Practice real-time mock interviews, get instant
+          feedback, and track your growth with HireAce.
         </p>
 
         <div style={styles.heroBtns}>
@@ -32,7 +50,13 @@ const Home = () => {
           </button>
 
           <button
-            style={styles.secondaryBtn}
+            style={{
+              ...styles.secondaryBtn,
+              color: darkMode ? "#FFFFFF" : "#4B3935",
+              border: darkMode
+                ? "2px solid #FFFFFF"
+                : "2px solid #4B3935",
+            }}
             onClick={() => navigate("/dashboard")}
           >
             Watch Demo
@@ -40,7 +64,7 @@ const Home = () => {
         </div>
       </header>
 
-      {/* Features Section */}
+      {/* FEATURES */}
       <section style={styles.section}>
         <h2 style={styles.sectionTitle}>Core Features</h2>
 
@@ -50,29 +74,68 @@ const Home = () => {
               key={i}
               style={{
                 ...styles.featureCard,
-                transform: hoveredFeature === i ? "translateY(-6px)" : "none",
+                background: darkMode ? "#1E1E1E" : "#FFFFFF",
+                border: darkMode
+                  ? "1px solid rgba(255,255,255,0.08)"
+                  : "1px solid rgba(75,57,53,0.1)",
+                transform:
+                  hoveredFeature === i
+                    ? "translateY(-6px)"
+                    : "none",
               }}
               onMouseEnter={() => setHoveredFeature(i)}
               onMouseLeave={() => setHoveredFeature(null)}
             >
-              <div style={styles.featureIcon}>{f.icon}</div>
-              <h3 style={styles.featureTitle}>{f.title}</h3>
-              <p style={styles.featureText}>{f.desc}</p>
+              <div style={styles.featureIcon}>
+                {f.icon}
+              </div>
+
+              <h3 style={styles.featureTitle}>
+                {f.title}
+              </h3>
+
+              <p
+                style={{
+                  ...styles.featureText,
+                  color: darkMode
+                    ? "#CFCFCF"
+                    : "#7A6A65",
+                }}
+              >
+                {f.desc}
+              </p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Demo Section */}
-      <section style={styles.demoSection}>
-        <h2 style={styles.sectionTitle}>Demo Interview Library</h2>
-        <p style={styles.subText}>
-          Learn from the best before you start your own session.
+      {/* DEMO */}
+      <section
+        style={{
+          ...styles.demoSection,
+          background: darkMode ? "#191919" : "#E8DCCB",
+        }}
+      >
+        <h2 style={styles.sectionTitle}>
+          Demo Interview Library
+        </h2>
+
+        <p
+          style={{
+            ...styles.subText,
+            color: darkMode ? "#D1D1D1" : "#7A6A65",
+          }}
+        >
+          Learn from the best before you start your own
+          session.
         </p>
 
         <div style={styles.videoPlaceholder}>
           <div style={styles.playBtn}>▶</div>
-          <p>How to Ace a Frontend Interview — Live AI Demo</p>
+
+          <p>
+            How to Ace a Frontend Interview — Live AI Demo
+          </p>
         </div>
       </section>
     </div>
@@ -82,31 +145,34 @@ const Home = () => {
 const features = [
   {
     title: "AI Mock Interviews",
-    desc: "Real-time AI asks role-specific questions. Feels like a real interview.",
-    icon: <Bot size={32} color="#4B3935" />
+    desc: "Real-time AI asks role-specific questions.",
+    icon: <Bot size={32} color="#C8A97E" />,
   },
+
   {
     title: "Smart Feedback",
-    desc: "Instant scoring and actionable suggestions to improve your answers.",
-    icon: <BarChart3 size={32} color="#4B3935" />
+    desc: "Instant scoring and suggestions.",
+    icon: <BarChart3 size={32} color="#C8A97E" />,
   },
+
   {
     title: "Role-Based Prep",
-    desc: "Tailored preparation for Frontend, Backend, UI/UX, and more.",
-    icon: <Target size={32} color="#4B3935" />
+    desc: "Frontend, Backend, UI/UX and more.",
+    icon: <Target size={32} color="#C8A97E" />,
   },
+
   {
     title: "Progress Tracking",
-    desc: "Track your growth and performance over time.",
-    icon: <TrendingUp size={32} color="#4B3935" />
-  }
+    desc: "Track your growth over time.",
+    icon: <TrendingUp size={32} color="#C8A97E" />,
+  },
 ];
+
 const styles = {
   page: {
-    background: "#F0E7D5",
     minHeight: "100vh",
     fontFamily: "'DM Sans', sans-serif",
-    color: "#4B3935",
+    transition: "0.3s",
   },
 
   hero: {
@@ -125,7 +191,6 @@ const styles = {
 
   heroSub: {
     fontSize: "18px",
-    color: "#7A6A65",
     maxWidth: "600px",
     margin: "0 auto 30px",
   },
@@ -145,13 +210,10 @@ const styles = {
     fontSize: "16px",
     fontWeight: 600,
     cursor: "pointer",
-    boxShadow: "0 4px 15px rgba(75,57,53,0.2)",
   },
 
   secondaryBtn: {
     background: "transparent",
-    color: "#4B3935",
-    border: "2px solid #4B3935",
     padding: "12px 28px",
     borderRadius: "12px",
     fontSize: "16px",
@@ -173,21 +235,19 @@ const styles = {
 
   featuresGrid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+    gridTemplateColumns:
+      "repeat(auto-fit, minmax(240px, 1fr))",
     gap: "25px",
   },
 
   featureCard: {
-    background: "white",
     padding: "30px",
     borderRadius: "20px",
-    border: "1px solid rgba(75,57,53,0.1)",
-    transition: "all 0.3s ease",
+    transition: "0.3s",
     textAlign: "center",
   },
 
   featureIcon: {
-    fontSize: "32px",
     marginBottom: "15px",
   },
 
@@ -199,18 +259,16 @@ const styles = {
 
   featureText: {
     fontSize: "14px",
-    color: "#7A6A65",
     lineHeight: 1.5,
   },
 
   demoSection: {
-    background: "#E8DCCB",
     padding: "80px 20px",
     textAlign: "center",
+    transition: "0.3s",
   },
 
   subText: {
-    color: "#7A6A65",
     marginBottom: "40px",
   },
 
@@ -246,8 +304,8 @@ const styles = {
     width: "300px",
     height: "300px",
     background: "#C8A97E",
-    opacity: 0.2,
-    filter: "blur(80px)",
+    opacity: 0.15,
+    filter: "blur(90px)",
     top: "-50px",
     left: "10%",
   },
@@ -257,8 +315,8 @@ const styles = {
     width: "300px",
     height: "300px",
     background: "#D6C2A8",
-    opacity: 0.3,
-    filter: "blur(80px)",
+    opacity: 0.2,
+    filter: "blur(90px)",
     bottom: "0",
     right: "10%",
   },

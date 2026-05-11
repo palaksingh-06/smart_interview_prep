@@ -1,67 +1,96 @@
+// 
 import { Link } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Sun, Moon } from "lucide-react";
 import logo from "../assets/logo.png";
 
-function Navbar() {
-  const [darkMode, setDarkMode] = useState(false);
-
-  // Apply theme to body
- useEffect(() => {
-  if (darkMode) {
-    document.body.classList.add("dark");
-  } else {
-    document.body.classList.remove("dark");
-  }
-}, [darkMode]);
-
+function Navbar({ darkMode, setDarkMode }) {
   return (
-    <nav style={styles.navbar}>
+    <nav
+      style={{
+        ...styles.navbar,
+        background: darkMode ? "#171717" : "#FFFFFF",
+        borderBottom: darkMode
+          ? "1px solid rgba(255,255,255,0.08)"
+          : "1px solid rgba(75,57,53,0.1)",
+      }}
+    >
       <div style={styles.navContainer}>
-
         {/* LOGO */}
-        <Link to="/" style={styles.brand}>
+        <Link
+          to="/"
+          style={{
+            ...styles.brand,
+            color: darkMode ? "#FFFFFF" : "#4B3935",
+          }}
+        >
           <img src={logo} alt="HireAce" style={styles.logo} />
           Hire<span style={styles.accent}>Ace</span>
         </Link>
 
         {/* Links */}
         <div style={styles.navLinks}>
-
-          {/* 🌙 DARK MODE ICON (ADD HERE) */}
+          {/* 🌙 THEME TOGGLE */}
           <div
             onClick={() => setDarkMode(!darkMode)}
-            style={styles.themeIcon}
+            style={{
+              ...styles.themeIcon,
+              background: darkMode ? "#262626" : "#ffffff",
+              color: darkMode ? "#ffffff" : "#4B3935",
+            }}
           >
             {darkMode ? <Sun size={20} /> : <Moon size={20} />}
           </div>
 
-          <Link to="/dashboard" style={styles.navLink}>Dashboard</Link>
-          <Link to="/settings" style={styles.navLink}>Settings</Link>
-          <Link to="/login" style={styles.navLink}>Login</Link>
+          <Link
+            to="/dashboard"
+            style={{
+              ...styles.navLink,
+              color: darkMode ? "#ffffff" : "#4B3935",
+            }}
+          >
+            Dashboard
+          </Link>
+
+          <Link
+            to="/settings"
+            style={{
+              ...styles.navLink,
+              color: darkMode ? "#ffffff" : "#4B3935",
+            }}
+          >
+            Settings
+          </Link>
+
+          <Link
+            to="/login"
+            style={{
+              ...styles.navLink,
+              color: darkMode ? "#ffffff" : "#4B3935",
+            }}
+          >
+            Login
+          </Link>
 
           <Link to="/signup">
             <button style={styles.navButton}>Sign Up</button>
           </Link>
         </div>
-
       </div>
     </nav>
   );
 }
 
-// ✅ MOVE THIS OUTSIDE FUNCTION
 const styles = {
   navbar: {
-    background: "#FFFFFF",
     height: "70px",
     display: "flex",
     alignItems: "center",
-    borderBottom: "1px solid rgba(75,57,53,0.1)",
     position: "sticky",
     top: 0,
     zIndex: 100,
     width: "100%",
+    transition: "0.3s",
   },
 
   navContainer: {
@@ -73,19 +102,22 @@ const styles = {
     alignItems: "center",
     padding: "0 20px",
   },
+
   logo: {
-  height: "25px",        // 👈 keep it smaller than navbar (70px)
-  width: "25px",
-  objectFit: "contain",
-},
+    height: "25px",
+    width: "25px",
+    objectFit: "contain",
+  },
 
   brand: {
     fontSize: "26px",
     fontWeight: "700",
-    color: "#4B3935",
     textDecoration: "none",
     letterSpacing: "0.5px",
     cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    gap: "8px",
   },
 
   accent: {
@@ -100,7 +132,6 @@ const styles = {
 
   navLink: {
     textDecoration: "none",
-    color: "#4B3935",
     fontSize: "14px",
     fontWeight: 500,
   },
@@ -114,16 +145,16 @@ const styles = {
     fontWeight: 500,
     cursor: "pointer",
   },
+
   themeIcon: {
-  cursor: "pointer",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  padding: "6px",
-  borderRadius: "8px",
-  background: "#ffffff",
-  color: "#4B3935",
-},
+    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "8px",
+    borderRadius: "10px",
+    transition: "0.3s",
+  },
 };
 
 export default Navbar;
