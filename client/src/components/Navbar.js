@@ -1,23 +1,45 @@
 import { Link } from "react-router-dom";
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Sun, Moon } from "lucide-react";
 import logo from "../assets/logo.png";
 
 function Navbar() {
+  const [darkMode, setDarkMode] = useState(false);
+
+  // Apply theme to body
+ useEffect(() => {
+  if (darkMode) {
+    document.body.classList.add("dark");
+  } else {
+    document.body.classList.remove("dark");
+  }
+}, [darkMode]);
+
   return (
     <nav style={styles.navbar}>
       <div style={styles.navContainer}>
 
-        {/* TEXT LOGO */}
+        {/* LOGO */}
         <Link to="/" style={styles.brand}>
-               <img src={logo} alt="HireAce" style={styles.logo} />
+          <img src={logo} alt="HireAce" style={styles.logo} />
           Hire<span style={styles.accent}>Ace</span>
         </Link>
 
         {/* Links */}
         <div style={styles.navLinks}>
+
+          {/* 🌙 DARK MODE ICON (ADD HERE) */}
+          <div
+            onClick={() => setDarkMode(!darkMode)}
+            style={styles.themeIcon}
+          >
+            {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+          </div>
+
           <Link to="/dashboard" style={styles.navLink}>Dashboard</Link>
           <Link to="/settings" style={styles.navLink}>Settings</Link>
           <Link to="/login" style={styles.navLink}>Login</Link>
+
           <Link to="/signup">
             <button style={styles.navButton}>Sign Up</button>
           </Link>
@@ -92,6 +114,16 @@ const styles = {
     fontWeight: 500,
     cursor: "pointer",
   },
+  themeIcon: {
+  cursor: "pointer",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  padding: "6px",
+  borderRadius: "8px",
+  background: "#ffffff",
+  color: "#4B3935",
+},
 };
 
 export default Navbar;

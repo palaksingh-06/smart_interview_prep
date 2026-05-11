@@ -10,6 +10,8 @@ import Navbar from "./components/Navbar";
 import ForgotPassword from "./pages/ForgotPassword";
 import VerifyOtp from "./pages/VerifyOtp";
 import ResetPassword from "./pages/ResetPassword";
+import Settings from "./pages/Settings";
+
 function App() {
   return (
     <BrowserRouter>
@@ -22,6 +24,7 @@ function App() {
         <Route path="/interview" element={<Interview />} />
         <Route path="/result" element={<Result />} />
         <Route path="/forgot" element={<ForgotPassword />} />
+        <Route path="/settings" element={<Settings />} />
         <Route path="/verify-otp" element={<VerifyOtp />} />
         <Route path="/reset-password" element={<ResetPassword />} />
       </Routes>
