@@ -95,7 +95,7 @@ const [error, setError] = useState("");
 
         {/* Forgot password */}
         <div style={styles.forgotRow}>
-          <Link to="/forgot" style={styles.forgot}>
+          <Link to="/forgot-password" style={styles.forgot}>
             Forgot password?
           </Link>
         </div>

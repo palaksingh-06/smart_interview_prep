@@ -9,7 +9,9 @@ import Dashboard from "./pages/Dashboard";
 import Interview from "./pages/Interview";
 import Result from "./pages/Result";
 import Navbar from "./components/Navbar";
-
+import ForgotPassword from "./pages/ForgotPassword";
+import VerifyOtp from "./pages/VerifyOtp"; 
+import ResetPassword from"./pages/ResetPassword";
 function App() {
   const [darkMode, setDarkMode] = useState(false);
 
@@ -25,6 +27,9 @@ function App() {
 
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/verify-otp" element={<VerifyOtp />} />
+         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/interview" element={<Interview />} />
         <Route path="/result" element={<Result />} />
