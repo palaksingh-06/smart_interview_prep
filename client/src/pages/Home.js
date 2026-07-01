@@ -113,7 +113,7 @@ const Home = ({ darkMode }) => {
       <section
         style={{
           ...styles.demoSection,
-          background: darkMode ? "#191919" : "#E8DCCB",
+         background: darkMode ? "#111111" : "#F0E7D5"
         }}
       >
         <h2 style={styles.sectionTitle}>

@@ -8,7 +8,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [focused, setFocused] = useState(null);
-const [error, setError] = useState("");
+  const [error, setError] = useState("");
   const inputStyle = (field) => ({
     ...styles.input,
     borderColor: focused === field ? "#C8A97E" : "#E5D5C5",
